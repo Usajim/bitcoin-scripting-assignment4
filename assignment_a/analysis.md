@@ -5,7 +5,7 @@ OP_DUP OP_HASH160 <PubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
 
 This script is called P2PKH (Pay-to-Public-Key-Hash).
 It is the most common Bitcoin locking script.
-Think of it as a locked box — only the person with the correct key and signature can open it.
+Think of it as a locked box, only the person with the correct key and signature can open it.
 
 ---
 
@@ -19,7 +19,7 @@ The script then processes them step by step using a stack (like a pile of items)
 | 1 | OP_DUP | Makes a copy of the public key provided by the spender |
 | 2 | OP_HASH160 | Scrambles the copied public key into a short fingerprint |
 | 3 | PubKeyHash | Pushes the expected fingerprint stored in the lock onto the stack |
-| 4 | OP_EQUALVERIFY | Checks if the two fingerprints match — stops and rejects if they do not |
+| 4 | OP_EQUALVERIFY | Checks if the two fingerprints match, stops and rejects if they do not |
 | 5 | OP_CHECKSIG | Verifies the digital signature using the original public key |
 
 ### Stack Walkthrough
@@ -101,7 +101,7 @@ There are two points where failure can occur:
 - The transaction is rejected by the network
 - No funds are moved
 - Every node independently enforces this rule without any central authority
-- In both cases the Bitcoin stays locked — no partial transfers happen
+- In both cases the Bitcoin stays locked, no partial transfers happen
 
 ---
 
@@ -118,7 +118,7 @@ There are two points where failure can occur:
    - To steal funds an attacker must BOTH:
      a) Reverse the HASH160 to find the public key (computationally impossible)
      b) Then forge a valid ECDSA signature for that key (also computationally impossible)
-   - Breaking one layer is not enough — both must be broken simultaneously
+   - Breaking one layer is not enough, both must be broken simultaneously
 
 3. Quantum Computing Protection
    - Your public key is hidden behind the hash until you spend

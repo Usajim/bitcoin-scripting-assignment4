@@ -3,7 +3,7 @@
 ## What is an HTLC?
 
 A Hashed Time-Lock Contract (HTLC) is a special Bitcoin script that enables
-trustless atomic swaps between two parties — Alice and Bob.
+trustless atomic swaps between two parties, Alice and Bob.
 
 Think of it like a safe with two keys and a timer:
 - Alice holds the secret key that opens it immediately
@@ -12,7 +12,7 @@ Think of it like a safe with two keys and a timer:
 
 ---
 
-## How Our Implementation Works
+## How Implementation Works
 
 ### Task 1: The Locking Script (create_htlc_script)
 This is placed on the Bitcoin output when the contract is created.
@@ -72,6 +72,6 @@ Bob unlocks the contract by providing:
 ## Why HTLCs Matter
 
 HTLCs are the foundation of the Bitcoin Lightning Network.
-They allow payments to be routed through multiple hops trustlessly
-because each hop uses an HTLC — either everyone gets paid or nobody does.
-This is the atomic property — all or nothing, no partial outcomes.
+They allow payments to be routed through multiple nodes trustlessly
+because each step uses an HTLC, either everyone gets paid or nobody does.
+This is the atomic property, all or nothing, no partial outcomes.
