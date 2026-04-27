@@ -35,55 +35,21 @@ OP_CHECKSIG:    [TRUE]                  signature valid, Bitcoin unlocked!
 
 ## Task 2: Data Flow Diagram
 
-+---------------------------+
-|  SPENDER PROVIDES         |
-|  [Signature] [PublicKey]  |
-+---------------------------+
-           |
-           v
-+---------------------------+
-|  OP_DUP                   |
-|  Copies the PublicKey     |
-+---------------------------+
-           |
-           v
-+---------------------------+
-|  OP_HASH160               |
-|  Hashes the copied key    |
-|  produces fingerprint     |
-+---------------------------+
-           |
-           v
-+---------------------------+
-|  <PubKeyHash>             |
-|  Expected fingerprint     |
-|  pushed from the lock     |
-+---------------------------+
-           |
-           v
-+-------------------------------+
-|  OP_EQUALVERIFY               |
-|  Do fingerprints match?       |
-+-------------------------------+
-        /         \
-      YES           NO
-       |             |
-       v             v
-  Continue        REJECTED
-       |          (wrong key)
-       v
-+---------------------------+
-|  OP_CHECKSIG              |
-|  Is signature valid?      |
-+---------------------------+
-        /         \
-      YES           NO
-       |             |
-       v             v
-  Bitcoin          REJECTED
-  Unlocked!     (forged signature)
+```mermaid
+flowchart TD
+    A["SPENDER PROVIDES\nSignature + PublicKey"] --> B["OP_DUP\nCopies the PublicKey"]
+    B --> C["OP_HASH160\nHashes the copied key\nproduces fingerprint"]
+    C --> D["PubKeyHash\nExpected fingerprint\npushed from the lock"]
+    D --> E{"OP_EQUALVERIFY\nDo fingerprints match?"}
+    E -->|YES| F["OP_CHECKSIG\nIs signature valid?"]
+    E -->|NO| G["REJECTED\nWrong key"]
+    F -->|YES| H["Bitcoin Unlocked!"]
+    F -->|NO| I["REJECTED\nForged signature"]
 
----
+    style G fill:#ff4444,color:#fff
+    style I fill:#ff4444,color:#fff
+    style H fill:#00aa44,color:#fff
+```
 
 ## Task 3: What Happens If Signature Verification Fails
 
